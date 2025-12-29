@@ -1,0 +1,106 @@
+/* Introduction */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background image with slow zoom/pulse */
+.background {
+    position: fixed;
+    inset: 0;
+    background: url("autobg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -2;
+    filter: brightness(0.6);
+    animation: zoomPulse 20s infinite alternate;
+}
+
+@keyframes zoomPulse {
+    0% { transform: scale(1); filter: brightness(0.6); }
+    50% { transform: scale(1.05); filter: brightness(0.65); }
+    100% { transform: scale(1); filter: brightness(0.6); }
+}
+
+/* Drifting overlay for subtle motion */
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.02); /* very subtle */
+    z-index: -1;
+    pointer-events: none;
+    animation: drift 60s linear infinite;
+}
+
+@keyframes drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 200px 200px; }
+}
+
+/* Intro Text Box */
+.intro-box {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.7); /* half-transparent white */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    color: #222;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: justify;
+    opacity: 0; /* initial for fade-in */
+    animation: fadeInUp 2s ease forwards; /* Only fade-in, no floating */
+}
+
+/* Fade-in + slide-up animation for intro box */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional subtle hover effect for intro box */
+.intro-box:hover {
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    transform: scale(1.01);
+    transition: all 0.4s ease;
+}
+
+/* Title styling */
+.intro-title {
+    font-size: 3rem;           /* Large title */
+    text-align: center;         /* Centered */
+    font-weight: bold;
+    margin-bottom: 30px;        /* Space between title and first paragraph */
+    color: #222;                /* Matches text color */
+    animation: fadeInDown 1.5s ease forwards;  /* Optional animation */
+    opacity: 0;                 /* Fade in effect */
+}
+
+/* Fade-in down animation for the title */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
